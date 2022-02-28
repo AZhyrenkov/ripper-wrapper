@@ -1,8 +1,5 @@
 #!/bin/bash
-# Ripper shell v2.1
-# 1.0 - initial script (uses local urls.txt file)
-# 2.0 - added external mirror for url list
-# 2.1 - added possibility to limit number of containers (for less powerful machines like 13in mbp pre M1)
+# ubuntu ripper forked from os_x_ripper 2.1
 
 VERSION='2.1'
 TARGETS_URL='https://raw.githubusercontent.com/nitupkcuf/ripper-wrapper/main/targets.json'
@@ -32,7 +29,8 @@ function install_dependencies {
     apt update && \
     apt install -y docker-ce && \
     curl -L "https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose && \
-    chmod +x /usr/local/bin/docker-compose
+    chmod +x /usr/local/bin/docker-compose &&
+    usermod -a -G docker ubuntu
   exit 1
 }
 
